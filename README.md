@@ -12,9 +12,13 @@ Służy zabezpieczeniu poszczególnych części aplikacji przed nieporządanym d
 ustalamy kto do czego ma dostęp. Do ustalenia poprawnej "tożsamości" wykorzystywany jest `JWT token`, który przekazuje nam informacje o użytkowniku
 
 Przewidziane są trzy przypadki filtrowania zapytań wysyłanych do serwera: 
+
     - Dany zasób może być udostępniony dla wszystkich
     - Dany zasób może być udostępniony dla uwierzytelnionych użytkowników (takich co przekażą do zapytania `JWT token`)
     - Dany zasób może być udostępniony dla zautoryzowanych użytkowników (takich co posiadają odpowiednie uprawnienia)
+
+    - Item Zed
+        - Nested Item 
 
 
 ### `npm test`
