@@ -1,6 +1,6 @@
-# Aplikacja webowa do zarządzania stolarnią - CarpentryShop
+# Aplikacja webowa do zarządzania pracą stolarni
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Pełna wersja aplikacji dostępna jest tutaj: [CarpentryShop](https://carpentry-shop-client.vercel.app).
 
 ## Available Scripts
 
