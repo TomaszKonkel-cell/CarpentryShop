@@ -2,17 +2,20 @@
 
 Pełna wersja aplikacji dostępna jest tutaj: [CarpentryShop](https://carpentry-shop-client.vercel.app).
 
-## Available Scripts
+## Opis
 
-In the project directory, you can run:
+Projekt zawiera nastepujące moduły :
 
-### `npm start`
+### `Uwierzytelniania i Autoryzowania`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Służy zabezpieczeniu poszczególnych części aplikacji przed nieporządanym dostępem. Za pomocą `SecurityFilterChain`, 
+ustalamy kto do czego ma dostęp. Do ustalenia poprawnej "tożsamości" wykorzystywany jest `JWT token`, który przekazuje nam informacje o użytkowniku
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Przewidziane są trzy przypadki filtrowania zapytań wysyłanych do serwera: 
+    - Dany zasób może być udostępniony dla wszystkich
+    - Dany zasób może być udostępniony dla uwierzytelnionych użytkowników (takich co przekażą do zapytania `JWT token`)
+    - Dany zasób może być udostępniony dla zautoryzowanych użytkowników (takich co posiadają odpowiednie uprawnienia)
+
 
 ### `npm test`
 
