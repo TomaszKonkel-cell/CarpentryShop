@@ -23,8 +23,10 @@ Przewidziane są trzy przypadki filtrowania zapytań wysyłanych do serwera:
 
 Pełne zarządzanie użytkownikami. Szyfrowanie hasła w momencie utworzenia użytkownika. Dodawanie ról które definiują dostęp do zasobów (Admin, Moderator, User)
 
-Każdy zasób zawiera uwzględnienie specjalnych wyjątków odpowiadające ustalonej logice biznesowej np. unikalne nazwy użytkowników, wymagania dotyczące haseł
+Każdy zasób zawiera uwzględnienie specjalnych wyjątków odpowiadające ustalonej logice biznesowej np. unikalne nazwy użytkowników, wymagania dotyczące haseł itp.
 Zawierają także zabezpiecznia w przypadku podania złych typów wartości czy też pustych
+
+
 Udostępnione zasoby w kontrolerze REST:
 
     - Logowanie (Dla wszystkich), przesłanie loginu i hasła oraz zweryfikowanie ich poprawności, poprawna weryfikacja zwraca szczegóły zalogowanego użytkownika a błędna szczegółową informacjew
