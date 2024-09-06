@@ -19,10 +19,22 @@ Przewidziane są trzy przypadki filtrowania zapytań wysyłanych do serwera:
 
 
 
-### `npm test`
+### `Użytkowników`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Pełne zarządzanie użytkownikami. Szyfrowanie hasła w momencie utworzenia użytkownika. Dodawanie ról które definiują dostęp do zasobów (Admin, Moderator, User)
+
+Każdy zasób zawiera uwzględnienie specjalnych wyjątków odpowiadające ustalonej logice biznesowej np. unikalne nazwy użytkowników, wymagania dotyczące haseł
+Zawierają także zabezpiecznia w przypadku podania złych typów wartości czy też pustych
+Udostępnione zasoby w kontrolerze REST:
+
+    - Logowanie (Dla wszystkich), przesłanie loginu i hasła oraz zweryfikowanie ich poprawności, poprawna weryfikacja zwraca szczegóły zalogowanego użytkownika a błędna szczegółową informacjew
+    - Tworzenie użytkowników (Dla Admina), przesłanie danych, zaszyfrowanie hasła oraz zapisanie go w bazie
+    - Lista użytkowników (Dla Admina), zwrócenia listy wszystkich dostępnych użytkowników
+    - Szczegóły użytkowników (Dla Admina), przesłanie parametru ID po którym zwracany jest konkretny użytkownik
+    - Zmiana nazwy (Dla Admina), przesłanie nowej nazwy oraz ID, po czym aktualizowany jest konkretny po ID użytkownik 
+    - Zmiana hasła (Dla Admina), przesłanie starego hasła, nowego hasła oraz ID, po sprawdzeniu poprawności starego hasła, nowe jest szyfrowane i zapisywanee dla konkretnego użytkownika
+    - Usuwanie ról (Dla Admina), przesłanie ID oraz nazwy roli, ustalane są nowe role i zapisywane dla użytkownika
+    - Usuwanie użytkownika, przesłanie ID, znajdowanie użytkownika i usuwanie go
 
 ### `npm run build`
 
