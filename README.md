@@ -95,3 +95,22 @@ Ze strony klienta status jest określany na podstawie wybranej metody płatnośc
 - Płatność później, wybierany jest status false
 
 Status ten określa czy zamówienie można zamknąć (ta funkcjonalność dostępna z poziomu kolejnego modułu)
+
+Dostęp do tych zasobów możliwy po przekazaniu w zapytaniu tokena z obojętnie jaką rolą
+
+### `Zlecenia` 
+
+Po przyjęciu zamówienia jest one do realizacji.
+
+Do każdej z pozycji z zamówienia należy wybrać przedmioty z magazynu, które zostały wykorzystane do jego realizacji
+
+Na odpowiedni endpoint należy wysłać liste "zasobów" wykorzystanych do konkretnej pozycji oraz jej numer id
+
+Kolejność operacji dodawania "zasobów" do pozycji:
+
+1. Sprawdzona zostaje poprawność przesłanych danych (tj. czy dany przedmiot istnieje w bazie, czy jest go odpowiednia ilość itp.)
+2. Wyszukanie odpowiedniej pozycji
+3. Poszczególne pozycje z listy "zasobów" zostają zapisane do bazy danych jednocześnie zmieniając ilość przedmiou z magazynu
+4. "Zasoby" zostają przypisane do konkretnej pozycji
+
+"Zasoby" można również usuwać. Takie działanie powoduje usunięcie ich instancji oraz przywracanie ilości przedmiotów w magazynie
