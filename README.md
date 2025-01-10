@@ -51,3 +51,14 @@ Magazyn odpowiada już za bardziej rzeczywisty aspekt, a mianowicie faktyczne od
 Inną różnicą tych modułów są również dane jakie posiadają. Projekty maja dane bardziej ogólne (nazwa, opis itp.), magazyn również posiada takie ale również bardziej szczegółowe (ilość, typ, kategoria)
 
 Dostęp do zasobów możliwy poprzez przekazanie w zapytaniu token, który wskazuje na konto z rolami ADMIN lub MODERATOR
+
+### `Zamówienia` 
+
+Możliwość tworzenia zamówień, a pozycjami które można do nich dodać to projekty
+
+Do stworzenia zamówienia wymagane jest przesłanie na odpowiedni endpoint (punkt w aplikacji po stronie serwera, który wykonuje jakąś operacje) listy pozycji
+
+- Sprawdzane zostaje poprawność przesłanych danych (tj. czy dany projekt istnieje w bazie, czy parametry ceny w żądaniu zgadzają z tym z bazy itp.)
+- Stworzone zostaje zamówienie, a nastepnie zapisane pozycje do których zostaje przypisane to konkretne zamówienie
+- Zostaje wyliczona cena całkowita zamówienia, na podstawie cen i ilośi pojedyńczych pozycji
+- W przypadku każdego błędu zostaje zwrócona informacja o nim
