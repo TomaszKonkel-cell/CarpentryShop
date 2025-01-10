@@ -7,10 +7,12 @@ Pełna wersja aplikacji dostępna jest tutaj: [CarpentryShop](https://carpentry-
 Aplikacja działa w oparciu o model klient-serwer
 
 Strona serwerowa działa na frameworku Spring Boot Javy, co zapewnia ciągłość działania i reakcje na działania użytkownika
+
 Komunikacja odbywa się poprzez Kontroler w którym zawarte są endpointy (adresy pod którymi udostępnione są poszczególne funkcjonalności/zasoby)
+
 Dane są przechowywane w bazie danych (postgreSQL) na podstawie modeli
 
-Strona klienta odpowiada za wygląd aplikacji jak i możliwość komunikacji z serwerem (pobieranie, dodawanie i modyfikowanie danych) i działa na frameworku React
+Strona klienta oparta na frameworku React odpowiada za wygląd aplikacji jak i możliwość komunikacji z serwerem (pobieranie, dodawanie i modyfikowanie danych)
 
 Projekt zawiera nastepujące moduły :
 
@@ -62,7 +64,7 @@ Dostęp do zasobów możliwy poprzez przekazanie w zapytaniu token, który wskaz
 
 ### `Zamówienia` 
 
-Możliwość tworzenia zamówień, a pozycjami które można do nich dodać to projekty
+Możliwość tworzenia zamówień w których pozycjami są projekty
 
 Budowa zamówienia wygląda w sposób następujacy
 
@@ -72,9 +74,24 @@ Zamówienie zawiera powiązanie z instancja listy pozycji, która zawiera powią
 
 Taki zabieg pozwala dodanie do zamówienia projektu, który może posiadać dodatkowe informacje (np. ilość)
 
-Do stworzenia zamówienia wymagane jest przesłanie na odpowiedni endpoint (punkt w aplikacji po stronie serwera, który wykonuje jakąś operacje) listy pozycji
+Do stworzenia zamówienia wymagane jest przesłanie na odpowiedni endpoint listy pozycji
 
-- Sprawdzane zostaje poprawność przesłanych danych (tj. czy dany projekt istnieje w bazie, czy parametry ceny w żądaniu zgadzają z tym z bazy itp.)
-- Stworzone zostaje zamówienie, a nastepnie zapisane pozycje do których zostaje przypisane to konkretne zamówienie
-- Zostaje wyliczona cena całkowita zamówienia, na podstawie cen i ilości pojedyńczych pozycji
-- W przypadku każdego błędu zostaje zwrócona informacja o nim
+Kolejność operacji tworzenia zamówienia:
+
+1. Sprawdzona zostaje poprawność przesłanych danych (tj. czy dany projekt istnieje w bazie, czy parametry ceny w żądaniu zgadzają z tym z bazy itp.)
+2. Zostaje wyliczona cena całkowita zamówienia, na podstawie cen i ilości pojedyńczych pozycji
+3. Stworzona zostaje nowa instancja zamówienie, a nastepnie poszczególne pozycje z listy zotają zapisane do bazy danych do których zostaje przypisane to konkretne zamówienie
+
+W przypadku jakiegokolwiek błędu zostaje zwrócona informacja o nim
+
+Wyświetlanie listy pozycji po stronie klienta opiera się na pobieraniu danych z pamięci localStorage. Dane te są zapisywane w momencie wybierania poszczególnych projektów
+
+Wymagane jest również przesłanie parametru płatności, które określa jej status (true/false) 
+
+Ze strony klienta status jest określany na podstawie wybranej metody płatności
+
+- Płatność bramką Stripe, po zaakceptowaniu płatności wybierany jest status true
+- Płatność gotówką, wybierany jest status płątności true
+- Płatność później, wybierany jest status false
+
+Status ten określa czy zamówienie można zamknąć (ta funkcjonalność dostępna z poziomu kolejnego modułu)
