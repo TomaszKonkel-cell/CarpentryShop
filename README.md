@@ -34,4 +34,18 @@ Przewidziane są trzy przypadki filtrowania zapytań wysyłanych do serwera:
 
 Logowanie jest dostępne dla każdego kto wyśle zapytanie, ponieważ nie wymaga tokena
 
-Reszta zasobów wymaga przekazania w zapytaniu tokena, a w niektórych tokena który wskazuje na konto z odpowiednią rolą
+Reszta zasobów wymaga przekazania w zapytaniu tokena, a w niektórych przypadkach tokena który wskazuje na konto z odpowiednią rolą
+
+### `Projekty i Magazyn`
+
+Obydwa moduły posiadaja w zasadzie takie same cechy, a jedyna rożnica wynika z ich przeznaczenia
+
+Projekty służą jako ogół rzeczy oferowanych w stolarni. Mogą to być faktyczne projekty wyrobów stolarskich ale również ogólne rzeczy
+
+Przykład -> projektem może być np. Krzesło drewniane do jadalni, ale może być też np. Usługa wytworzenia (w ogólnym tego słowa znaczeniu)
+
+Konkretny schemat korzystania z tego wybiera sobie już użytkownik końcowy
+
+Magazyn odpowiada już za bardziej rzeczywisty aspekt, a mianowicie faktyczne odwzorowanie rodzaju i ilości przedmiotów, które są posiadane. Kontrola nad tym jest połączona z pózniejszymi modułami
+
+Inną różnicą tych modułów są również dane jakie posiadają. Projekty maja dane bardziej ogólne (nazwa, opis itp.), magazyn również posiada takie ale również bardziej szczegółowe (ilość, typ, kategoria)
