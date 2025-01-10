@@ -34,7 +34,7 @@ Przewidziane są trzy przypadki filtrowania zapytań wysyłanych do serwera:
 
 Logowanie jest dostępne dla każdego kto wyśle zapytanie, ponieważ nie wymaga tokena
 
-Reszta zasobów wymaga przekazania w zapytaniu tokena, a w niektórych przypadkach tokena który wskazuje na konto z odpowiednią rolą
+Reszta zasobów wymaga przekazania w zapytaniu tokena, który wskazuje konto z rolą ADMIN
 
 ### `Projekty i Magazyn`
 
@@ -49,3 +49,5 @@ Konkretny schemat korzystania z tego wybiera sobie już użytkownik końcowy
 Magazyn odpowiada już za bardziej rzeczywisty aspekt, a mianowicie faktyczne odwzorowanie rodzaju i ilości przedmiotów, które są posiadane. Kontrola nad tym jest połączona z pózniejszymi modułami
 
 Inną różnicą tych modułów są również dane jakie posiadają. Projekty maja dane bardziej ogólne (nazwa, opis itp.), magazyn również posiada takie ale również bardziej szczegółowe (ilość, typ, kategoria)
+
+Dostęp do zasobów możliwy poprzez przekazanie w zapytaniu token, który wskazuje na konto z rolami ADMIN lub MODERATOR
