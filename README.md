@@ -4,6 +4,14 @@ Pełna wersja aplikacji dostępna jest tutaj: [CarpentryShop](https://carpentry-
 
 ## Opis
 
+Aplikacja działa w oparciu o model klient-serwer
+
+Strona serwerowa działa na frameworku Spring Boot Javy, co zapewnia ciągłość działania i reakcje na działania użytkownika
+Komunikacja odbywa się poprzez Kontroler w którym zawarte są endpointy (adresy pod którymi udostępnione są poszczególne funkcjonalności/zasoby)
+Dane są przechowywane w bazie danych (postgreSQL) na podstawie modeli
+
+Strona klienta odpowiada za wygląd aplikacji jak i możliwość komunikacji z serwerem (pobieranie, dodawanie i modyfikowanie danych) i działa na frameworku React
+
 Projekt zawiera nastepujące moduły :
 
 ### `Użytkowników`
@@ -56,9 +64,17 @@ Dostęp do zasobów możliwy poprzez przekazanie w zapytaniu token, który wskaz
 
 Możliwość tworzenia zamówień, a pozycjami które można do nich dodać to projekty
 
+Budowa zamówienia wygląda w sposób następujacy
+
+Zamówienie -> lista pozycji -> projekty. W praktyce są to 3 osobne tabele które są w relacji ze sobą
+
+Zamówienie zawiera powiązanie z instancja listy pozycji, która zawiera powiązanie z konkrentym projektem
+
+Taki zabieg pozwala dodanie do zamówienia projektu, który może posiadać dodatkowe informacje (np. ilość)
+
 Do stworzenia zamówienia wymagane jest przesłanie na odpowiedni endpoint (punkt w aplikacji po stronie serwera, który wykonuje jakąś operacje) listy pozycji
 
 - Sprawdzane zostaje poprawność przesłanych danych (tj. czy dany projekt istnieje w bazie, czy parametry ceny w żądaniu zgadzają z tym z bazy itp.)
 - Stworzone zostaje zamówienie, a nastepnie zapisane pozycje do których zostaje przypisane to konkretne zamówienie
-- Zostaje wyliczona cena całkowita zamówienia, na podstawie cen i ilośi pojedyńczych pozycji
+- Zostaje wyliczona cena całkowita zamówienia, na podstawie cen i ilości pojedyńczych pozycji
 - W przypadku każdego błędu zostaje zwrócona informacja o nim
