@@ -33,4 +33,5 @@ Przewidziane są trzy przypadki filtrowania zapytań wysyłanych do serwera:
 - Dany zasób może być udostępniony dla zautoryzowanych użytkowników (takich co posiadają odpowiednie uprawnienia)
 
 Logowanie jest dostępne dla każdego kto wyśle zapytanie, ponieważ nie wymaga tokena
+
 Reszta zasobów wymaga przekazania w zapytaniu tokena, a w niektórych tokena który wskazuje na konto z odpowiednią rolą
