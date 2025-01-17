@@ -70,7 +70,7 @@ Budowa zamówienia wygląda w sposób następujacy
 
 Zamówienie -> lista pozycji -> projekty. W praktyce są to 3 osobne tabele które są w relacji ze sobą
 
-Zamówienie zawiera powiązanie z instancja listy pozycji, która zawiera powiązanie z konkrentym projektem
+Zamówienie zawiera powiązanie z listą instancji pozycji, która zawiera powiązanie z konkrentym projektem
 
 Taki zabieg pozwala dodanie do zamówienia projektu, który może posiadać dodatkowe informacje (np. ilość)
 
@@ -102,7 +102,7 @@ Dostęp do tych zasobów możliwy po przekazaniu w zapytaniu tokena z obojętnie
 
 Po przyjęciu zamówienia jest one do realizacji.
 
-Do każdej z pozycji z zamówienia należy wybrać przedmioty z magazynu, które zostały wykorzystane do jego realizacji
+Do każdej z pozycji w zamówieniu należy wybrać przedmioty z magazynu, które zostały wykorzystane do jego realizacji
 
 Na odpowiedni endpoint należy wysłać liste "zasobów" wykorzystanych do konkretnej pozycji oraz jej numer id
 
@@ -110,7 +110,69 @@ Kolejność operacji dodawania "zasobów" do pozycji:
 
 1. Sprawdzona zostaje poprawność przesłanych danych (tj. czy dany przedmiot istnieje w bazie, czy jest go odpowiednia ilość itp.)
 2. Wyszukanie odpowiedniej pozycji
-3. Poszczególne pozycje z listy "zasobów" zostają zapisane do bazy danych jednocześnie zmieniając ilość przedmiou z magazynu
+3. Poszczególne pozycje z listy "zasobów" zostają zapisane do bazy danych jednocześnie zmieniając ilość przedmiotu z magazynu
 4. "Zasoby" zostają przypisane do konkretnej pozycji
 
+Przy każdym dodawaniu sprawdzane jest czy wszystkie pozycje z zamówienia są uzupełnione, aby określić czy można zamknąć zamówienie
+
+Nie można zamknąć zamówienie jeżeli nie jest opłacone oraz jeżeli wszystkie pozycje nie są uzupełnione
+
 "Zasoby" można również usuwać. Takie działanie powoduje usunięcie ich instancji oraz przywracanie ilości przedmiotów w magazynie
+
+Jeżeli do zamówienia została wbrana opcja płatności później z tego poziomu można dokonać ponownie płatności (do wyboru płatność gotówką lub bramką Stripe)
+
+### `Statystyki`
+
+Dane te wyświetlane są na panelu głównym Dashboard
+
+Strona kliencka wysyła zapytanie do serwera o konkretne statystyki (np. suma dzisiejszej sprzedaży)
+
+Dostęp do nich posiada każdy zalogowany użytkownik
+
+### `Bramka Stripe` 
+
+Sposób płatności online lub kartą bankową
+
+Na stronie Stripe, po założeniu konta wygenerowane zostają klucze uwierzytelniające do obsługi płątności 
+
+Funkcjonalność działa w trybie testowym co oznacza, że można ją obsłużyć bez wykonania faktycznej opłaty z rzeczywistych środków
+
+Do pełni działania wystarczy przełączyć ją na tryb "live" w panelu Stripe
+
+Generowanie płatności działa na podstawie przekazania klucza uwierzytelniającego, który służy do stworzenia płatności przypisanej do naszego konta Stripe (w tym przypadku konta stworzonego na potrzeby aplikacji)
+
+Wraz z kluczem przekazujemy szczegółowe dane o pozycjach za które ma być pobrana opłata (nazwa, ilość, cena)
+
+Po przetworzeniu danych przez Stripe generowany jest link do płatności
+
+Z poziomu klienta wyglada to tak, że po wybraniu płatności kartą zostają przesłane dane, a następnie wykonane przekierowanie na adres do płatności w bramce Stripe (adres wygenerowany na podstawie kluczy)
+
+Dane do płątności w trybie testowym :
+
+Numer karty: 4242 4242 4242 4242
+
+Data ważności: jakakolwiek byle w przyszłości
+
+Kod CVC: jakiekolwik trzy liczby
+
+### `Google Drive API`
+
+Dysk Google wykorzystany do przechowywanie niektórych plików wykorzystywanych w aplikaci
+
+Po założeniu konta w API Google Drive możliwe jest wygenerowanie pliku, który służy do połączenia z faktycznym kontem Dysku Google (zawiera informacje odnośnie konta, kluczy itp)
+
+Przy każdej operacji którą chcemy wykonać za zasobach Dysku Google należy nawiązać z nim połączenia na podstawie wcześniej wspomnianego pliku
+
+Przechowywane informacje to m.in
+- Zdjęcia, które można opcjonalnie dodać do projektu
+- Pliki zapasowe projektów i magazynu
+
+Zdjęcia przechowywane są w imiennych plikach ponieważ nazwy muszą być unikalne podczas tworzenia projektów
+
+Każda aktualizacja nazwy projektu powoduje zmiane folderów w którym przechowywane jest zdjęcie 
+
+Pliki zapasowe działaja na zasadzie zapisanie informacji binarnie do pliku i zapisanie tego pliku na dysku
+
+Dane można zapisać jak i odczytać w celu przywrócenia danych lub przy przynoszeniu na inną baze danych
+
+Pliki w nazwie zawierają date utworzenia, dzięki czemu można wybierać z różnych dostępnych wersji
