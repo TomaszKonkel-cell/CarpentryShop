@@ -133,7 +133,7 @@ Dostęp do nich posiada każdy zalogowany użytkownik
 
 Sposób płatności online lub kartą bankową
 
-Na stronie Stripe, po założeniu konta wygenerowane zostają klucze uwierzytelniające do obsługi płątności 
+Na stronie Stripe, po założeniu konta wygenerowane zostają klucze uwierzytelniające do obsługi płatności 
 
 Funkcjonalność działa w trybie testowym co oznacza, że można ją obsłużyć bez wykonania faktycznej opłaty z rzeczywistych środków
 
@@ -176,3 +176,15 @@ Pliki zapasowe działaja na zasadzie zapisanie informacji binarnie do pliku i za
 Dane można zapisać jak i odczytać w celu przywrócenia danych lub przy przynoszeniu na inną baze danych
 
 Pliki w nazwie zawierają date utworzenia, dzięki czemu można wybierać z różnych dostępnych wersji
+
+### `JavaMailSender`
+
+Możliwość wysyłania wiadomości mail za pomocą klasy `JavaMailSender`
+
+Z poziomu panelu Dashboard możliwe jest wysłanie wiadomości z tabela zarobków na konkretny przedział dat
+
+Zakres dat wybieramy z kalendarza oraz podajemy adres odbiorcy, który otrzyma wiadomość
+
+W wiadomości znajdować się będzie rozpiska zarobków z każdego dnia z danego przedziału wraz z sumą wszystkich dni
+
+Aplikacja również wysyła automatycznie wiadomość raz w miesiącu za pomocą adnotacji `Scheduled` w metodzie z odpowiedniej klasy (zawiera tabele z podsmowaniem miesiąca poprzedzjącego)
